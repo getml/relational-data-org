@@ -6,10 +6,6 @@ require('./datasetInfoReferences.styl');
 
 export default class DatasetInfoReferences extends Component {
 
-  static propTypes = {
-    references: React.PropTypes.instanceOf(immutable.List).isRequired
-  };
-
   render() {
     const references = this.props.references;
 
@@ -32,3 +28,7 @@ export default class DatasetInfoReferences extends Component {
   }
 
 }
+
+DatasetInfoReferences.propTypes = {
+  references: React.PropTypes.instanceOf(immutable.List).isRequired
+};

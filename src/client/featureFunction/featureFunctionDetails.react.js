@@ -6,9 +6,6 @@ require('./featureFunctionDetails.styl');
 
 export default class FeatureFunctionDetails extends Component {
 
-  static propTypes = {
-    results: React.PropTypes.instanceOf(immutable.List).isRequired
-  }
 
   constructor() {
     super();
@@ -122,3 +119,7 @@ export default class FeatureFunctionDetails extends Component {
   }
 
 }
+
+FeatureFunctionDetails.propTypes = {
+  results: React.PropTypes.instanceOf(immutable.List).isRequired
+};

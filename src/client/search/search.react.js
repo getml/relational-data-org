@@ -2,7 +2,7 @@ import React from 'react';
 import immutable from 'immutable';
 import Component from '../common/component.react';
 import Filter from './filter.react';
-import {onSearchInputChange, onFilterCheckboxChange, submitSearchForm} from './actions';
+import { onSearchInputChange, onFilterCheckboxChange, submitSearchForm } from './actions';
 
 require('./search.styl');
 
@@ -10,8 +10,11 @@ let t;
 
 export default class Search extends Component {
 
-  static propTypes = {
-    search: React.PropTypes.instanceOf(immutable.Map).isRequired
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onFilterChange = this.onFilterChange.bind(this);
   }
 
   onSubmit(e) {
@@ -22,12 +25,12 @@ export default class Search extends Component {
   onSearchChange(e) {
     onSearchInputChange(e.target.value);
     if (t) clearTimeout(t);
-    t = setTimeout(::this.submit, 500);
+    t = setTimeout(this.submit, 500);
   }
 
   onFilterChange(e) {
     onFilterCheckboxChange(e.target.name, e.target.value, e.target.checked);
-    setTimeout(::this.submit, 0);
+    setTimeout(this.submit, 0);
   }
 
   submit() {
@@ -40,19 +43,23 @@ export default class Search extends Component {
     const filter = this.props.search.get('filter');
 
     return (
-      <form action='' method='get' onSubmit={::this.onSubmit}>
+      <form action='' method='get' onSubmit={this.onSubmit}>
         <input
           autoComplete='off'
           className='Search'
           name='q'
-          onChange={::this.onSearchChange}
+          onChange={this.onSearchChange}
           placeholder='Search for datasets'
           type='search'
           value={values.q}
         />
-        <Filter filter={filter} onFilterChange={::this.onFilterChange} values={values} />
+        <Filter filter={filter} onFilterChange={this.onFilterChange} values={values} />
       </form>
     );
   }
 
+}
+
+Search.propTypes = {
+  search: React.PropTypes.instanceOf(immutable.Map).isRequired
 }

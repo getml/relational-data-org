@@ -1,4 +1,4 @@
-import {Record} from 'immutable';
+import { Record } from 'immutable';
 
 const MessageRecord = Record({
   'text': null,
@@ -7,7 +7,7 @@ const MessageRecord = Record({
 
 export default class Message extends MessageRecord {
 
-  static revive = (props) => {
+  static revive(props) {
     return new Message(props);
   }
 

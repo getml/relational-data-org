@@ -7,10 +7,6 @@ require('./sidebar.styl');
 
 export default class Sidebar extends Component {
 
-  static propTypes = {
-    search: React.PropTypes.instanceOf(immutable.Map).isRequired
-  }
-
   render() {
     return (
       <section className='Sidebar'>
@@ -19,4 +15,8 @@ export default class Sidebar extends Component {
     );
   }
 
+}
+
+Sidebar.propTypes = {
+  search: React.PropTypes.instanceOf(immutable.Map).isRequired
 }

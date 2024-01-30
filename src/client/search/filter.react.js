@@ -6,12 +6,6 @@ import FilterGroup from './filtergroup.react';
 
 export default class Filter extends Component {
 
-  static propTypes = {
-    filter: React.PropTypes.instanceOf(FilterType),
-    onFilterChange: React.PropTypes.func.isRequired,
-    values: React.PropTypes.instanceOf(FormType)
-  }
-
   render() {
     const values = this.props.values;
     const shrinked = this.props.filter.get('shrinked');
@@ -51,7 +45,7 @@ export default class Filter extends Component {
           name='domain'
           onChange={this.props.onFilterChange}
           shrinked={shrinked.includes('domain')}
-          values={['Education', 'Entertainment', 'Financial', 'Geography', 'Government', 'Industry', 'Kinship', 'Medicine',  'Retail', 'Sport']}
+          values={['Education', 'Entertainment', 'Financial', 'Geography', 'Government', 'Industry', 'Kinship', 'Medicine', 'Retail', 'Sport']}
         />
 
         <FilterGroup
@@ -102,4 +96,10 @@ export default class Filter extends Component {
     );
   }
 
+}
+
+Filter.propTypes = {
+  filter: React.PropTypes.instanceOf(FilterType),
+  onFilterChange: React.PropTypes.func.isRequired,
+  values: React.PropTypes.instanceOf(FormType)
 }

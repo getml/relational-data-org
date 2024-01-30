@@ -2,7 +2,7 @@ import React from 'react';
 import immutable from 'immutable';
 import DocumentTitle from 'react-document-title';
 import Component from '../common/component.react';
-import {fetchPastResults} from '../featureFunction/actions';
+import { fetchPastResults } from '../featureFunction/actions';
 import FeatureFunctionForm from '../featureFunction/featureFunctionForm.react';
 import FeatureFunctionPastResults from '../featureFunction/featureFunctionPastResults.react';
 
@@ -10,10 +10,6 @@ require('./featureFunctionPage.styl');
 
 export default class FeatureFunctionPage extends Component {
 
-  static propTypes = {
-    app: React.PropTypes.instanceOf(immutable.Map).isRequired,
-    featureFunctions: React.PropTypes.instanceOf(immutable.Map).isRequired
-  }
 
   componentWillMount() {
     return fetchPastResults();
@@ -63,3 +59,8 @@ export default class FeatureFunctionPage extends Component {
   }
 
 }
+
+FeatureFunctionPage.propTypes = {
+  app: React.PropTypes.instanceOf(immutable.Map).isRequired,
+  featureFunctions: React.PropTypes.instanceOf(immutable.Map).isRequired
+};

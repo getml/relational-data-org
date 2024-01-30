@@ -7,10 +7,6 @@ require('./taglist.styl');
 
 export default class TagList extends Component {
 
-  static propTypes = {
-    tags: React.PropTypes.instanceOf(immutable.List)
-  }
-
   render() {
     return (
       <ul className='TagList'>
@@ -25,4 +21,8 @@ export default class TagList extends Component {
     );
   }
 
+}
+
+TagList.propTypes = {
+  tags: React.PropTypes.instanceOf(immutable.List)
 }

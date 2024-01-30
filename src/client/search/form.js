@@ -1,4 +1,4 @@
-import immutable, {List, Record} from 'immutable';
+import immutable, { List, Record } from 'immutable';
 
 const FormRecord = Record({
   q: '',
@@ -15,21 +15,21 @@ const FormRecord = Record({
 
 export default class Form extends FormRecord {
 
-  static fromJS = (props) => {
+  static fromJS(props) {
     return new Form(immutable.fromJS(props));
   }
 
-  static revive = (props) => {
+  static revive(props) {
     return new Form(props);
   }
 
   toJS(withoutEmpty = false) {
     return withoutEmpty
       ? this
-          .toMap()
-          .filter((n) => n !== '' && n.size !== 0)
-          .toJS()
+        .toMap()
+        .filter((n) => n !== '' && n.size !== 0)
+        .toJS()
       : super
-          .toJS();
+        .toJS();
   }
 }

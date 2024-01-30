@@ -1,4 +1,4 @@
-import {Record} from 'immutable';
+import { Record } from 'immutable';
 
 const TagRecord = Record({
   type: null,
@@ -9,7 +9,7 @@ const TagRecord = Record({
 
 export default class Tag extends TagRecord {
 
-  static revive = (props) => {
+  static revive(props) {
     return new Tag(props);
   }
 

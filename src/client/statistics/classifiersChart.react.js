@@ -1,6 +1,6 @@
 import React from 'react';
 import immutable from 'immutable';
-import {ScatterChart} from 'react-d3';
+import { ScatterChart } from 'react-d3';
 import Component from '../common/component.react';
 import _ from 'underscore';
 
@@ -8,25 +8,11 @@ require('./classifiersChart.styl');
 
 export default class ClassifiersChart extends Component {
 
-  static propTypes = {
-    classifiers: React.PropTypes.instanceOf(immutable.List).isRequired,
-    height: React.PropTypes.number,
-    margins: React.PropTypes.object,
-    title: React.PropTypes.string,
-    width: React.PropTypes.number
-  }
-
-  static defaultProps = {
-    width: 600,
-    height: 400,
-    margins: {top: 10, right: 20, bottom: 50, left: 50},
-    title: ''
-  }
 
   preprocessData(classifiers) {
     const types = _.groupBy(classifiers.toJS(), (classifier) => { return classifier.type; });
     const data = Object.keys(types).map((name) => {
-      const values = types[name].map((classifier) => { return { x: classifier.released, y: classifier.ranking, data: {height: 220} }; });
+      const values = types[name].map((classifier) => { return { x: classifier.released, y: classifier.ranking, data: { height: 220 } }; });
       return {
         name: name,
         values: values
@@ -59,4 +45,19 @@ export default class ClassifiersChart extends Component {
     );
   }
 
+}
+
+ClassifiersChart.propTypes = {
+  classifiers: React.PropTypes.instanceOf(immutable.List).isRequired,
+  height: React.PropTypes.number,
+  margins: React.PropTypes.object,
+  title: React.PropTypes.string,
+  width: React.PropTypes.number
+}
+
+ClassifiersChart.defaultProps = {
+  width: 600,
+  height: 400,
+  margins: { top: 10, right: 20, bottom: 50, left: 50 },
+  title: ''
 }

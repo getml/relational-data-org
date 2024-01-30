@@ -5,13 +5,7 @@ import exposeRouter from '../common/exposerouter.react';
 
 require('./featureFunctionPastResults.styl');
 
-@exposeRouter
-export default class FeatureFunctionPastResults extends Component {
-
-  static propTypes = {
-    results: React.PropTypes.instanceOf(immutable.List).isRequired,
-    router: React.PropTypes.func.isRequired
-  }
+class FeatureFunctionPastResults extends Component {
 
   constructor() {
     super();
@@ -57,7 +51,7 @@ export default class FeatureFunctionPastResults extends Component {
   }
 
   rowClicked(id) {
-    this.props.router.transitionTo('featureFunctionDetail', {id: id});
+    this.props.router.transitionTo('featureFunctionDetail', { id: id });
   }
 
   render() {
@@ -125,3 +119,10 @@ export default class FeatureFunctionPastResults extends Component {
   }
 
 }
+
+FeatureFunctionPastResults.propTypes = {
+  results: React.PropTypes.instanceOf(immutable.List).isRequired,
+  router: React.PropTypes.func.isRequired
+};
+
+export default exposeRouter(FeatureFunctionPastResults);

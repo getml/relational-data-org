@@ -1,5 +1,5 @@
-import {List, Map, Record} from 'immutable';
-import {dataTypes} from '../datasets/store';
+import { List, Map, Record } from 'immutable';
+import { dataTypes } from '../datasets/store';
 
 const ReferenceRecord = Record({
   text: null,
@@ -7,7 +7,7 @@ const ReferenceRecord = Record({
 });
 
 class Reference extends ReferenceRecord {
-  static revive = (props) => {
+  static revive(props) {
     return new Reference(props);
   }
 }
@@ -23,7 +23,7 @@ const AlgorithmRecord = Record({
 });
 
 class Algorithm extends AlgorithmRecord {
-  static revive = (props) => {
+  static revive(props) {
     return new Algorithm(props);
   }
 }
@@ -62,7 +62,7 @@ const DatasetRecord = Record({
 
 export default class Dataset extends DatasetRecord {
 
-  static fromDB = (props) => {
+  static fromDB(props) {
     return new Dataset({
       title: props.get('dataset_name'),
       alternativeNames: props.get('alternative_names'),
@@ -111,7 +111,7 @@ export default class Dataset extends DatasetRecord {
     });
   }
 
-  static revive = (props) => {
+  static revive(props) {
     if (props instanceof Map) {
       props = props
         .set('versions', props.get('versions')

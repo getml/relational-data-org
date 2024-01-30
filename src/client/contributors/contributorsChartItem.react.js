@@ -3,12 +3,6 @@ import Component from '../common/component.react';
 
 export default class ContributorsChartItem extends Component {
 
-  static propTypes = {
-    label: React.PropTypes.string.isRequired,
-    value: React.PropTypes.number.isRequired,
-    xScale: React.PropTypes.func.isRequired,
-    yScale: React.PropTypes.func.isRequired
-  }
 
   render() {
     const xScale = this.props.xScale;
@@ -37,4 +31,11 @@ export default class ContributorsChartItem extends Component {
     );
   }
 
+}
+
+ContributorsChartItem.propTypes = {
+  label: React.PropTypes.string.isRequired,
+  value: React.PropTypes.number.isRequired,
+  xScale: React.PropTypes.func.isRequired,
+  yScale: React.PropTypes.func.isRequired
 }

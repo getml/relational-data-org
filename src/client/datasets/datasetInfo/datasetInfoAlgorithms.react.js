@@ -6,10 +6,6 @@ require('./datasetInfoAlgorithms.styl');
 
 export default class DatasetInfoAlgorithms extends Component {
 
-  static propTypes = {
-    algorithms: React.PropTypes.instanceOf(immutable.List).isRequired
-  };
-
   constructor() {
     super();
     this.state = {
@@ -119,3 +115,7 @@ export default class DatasetInfoAlgorithms extends Component {
   }
 
 }
+
+DatasetInfoAlgorithms.propTypes = {
+  algorithms: React.PropTypes.instanceOf(immutable.List).isRequired
+};

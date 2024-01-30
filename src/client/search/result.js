@@ -1,4 +1,4 @@
-import {List, Map, Record} from 'immutable';
+import { List, Map, Record } from 'immutable';
 import Form from './form';
 import Dataset from '../datasets/dataset';
 
@@ -10,7 +10,7 @@ const ResultRecord = Record({
 
 export default class Result extends ResultRecord {
 
-  static revive = (props) => {
+  static revive(props) {
     if (props instanceof Map) {
       props = props
         .set('query', Form.revive(props.get('query')))

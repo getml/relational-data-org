@@ -1,28 +1,13 @@
 import React from 'react';
 import immutable from 'immutable';
 import d3 from 'd3';
-import {Chart, XAxis, YAxis} from 'react-d3/common';
+import { Chart, XAxis, YAxis } from 'react-d3/common';
 import Component from '../common/component.react';
 import ContributorsChartItem from './contributorsChartItem.react';
 
 require('./contributorsChart.styl');
 
 export default class ContributorsChart extends Component {
-
-  static propTypes = {
-    data: React.PropTypes.instanceOf(immutable.List).isRequired,
-    height: React.PropTypes.number,
-    margins: React.PropTypes.object,
-    title: React.PropTypes.string,
-    width: React.PropTypes.number
-  }
-
-  static defaultProps = {
-    width: 600,
-    height: 200,
-    title: '',
-    margins: {top: 0, right: 20, bottom: 20, left: 100}
-  }
 
   render() {
     const data = this.props.data;
@@ -69,7 +54,7 @@ export default class ContributorsChart extends Component {
             tickFormatting={(d) => {
               const url = this.props.data.find((value) => d === value.name).url;
               return url
-                ? <tspan dangerouslySetInnerHTML={{__html: `<a xlink:href="${url}">${d}</a>`}} />
+                ? <tspan dangerouslySetInnerHTML={{ __html: `<a xlink:href="${url}">${d}</a>` }} />
                 : d;
             }}
             tickSize={0}
@@ -91,4 +76,19 @@ export default class ContributorsChart extends Component {
     );
   }
 
+}
+
+ContributorsChart.propTypes = {
+  data: React.PropTypes.instanceOf(immutable.List).isRequired,
+  height: React.PropTypes.number,
+  margins: React.PropTypes.object,
+  title: React.PropTypes.string,
+  width: React.PropTypes.number
+};
+
+ContributorsChart.defaultProps = {
+  width: 600,
+  height: 200,
+  title: '',
+  margins: { top: 0, right: 20, bottom: 20, left: 100 }
 }

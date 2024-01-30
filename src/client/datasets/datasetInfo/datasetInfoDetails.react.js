@@ -1,17 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 import Component from '../../common/component.react.js';
 import DatasetType from '../dataset';
-import {capitalize, getSizeWithUnit, getLocaleString, getTagName, getNameWithTooltip, tooltips} from '../../../lib/helpers';
-import {getTableCountValue, getDataTypeText} from '../tags/store';
+import { capitalize, getSizeWithUnit, getLocaleString, getTagName, getNameWithTooltip, tooltips } from '../../../lib/helpers';
+import { getTableCountValue, getDataTypeText } from '../tags/store';
 
 require('./datasetInfoDetails.styl');
 
 export default class DatasetInfoDetails extends Component {
-
-  static propTypes = {
-    dataset: React.PropTypes.instanceOf(DatasetType).isRequired
-  }
 
   render() {
     const dataset = this.props.dataset;
@@ -24,18 +20,18 @@ export default class DatasetInfoDetails extends Component {
           <dt>{getNameWithTooltip('Associated task')}:</dt>
           <dd>
             {dataset.task
-              ? <Link query={{task: [capitalize(dataset.task)]}} to='search'>
-                  {getNameWithTooltip(dataset.task)}
-                </Link>
+              ? <Link query={{ task: [capitalize(dataset.task)] }} to='search'>
+                {getNameWithTooltip(dataset.task)}
+              </Link>
               : '?'}
           </dd>
 
           <dt>{getNameWithTooltip('Domain')}:</dt>
           <dd>
             {dataset.domain
-              ? <Link query={{domain: [dataset.domain]}} to='search'>
-                  {getNameWithTooltip(dataset.domain)}
-                </Link>
+              ? <Link query={{ domain: [dataset.domain] }} to='search'>
+                {getNameWithTooltip(dataset.domain)}
+              </Link>
               : '?'}
           </dd>
 
@@ -49,18 +45,18 @@ export default class DatasetInfoDetails extends Component {
           <dt>{getNameWithTooltip('Size')}:</dt>
           <dd>
             {dataset.databaseSize
-              ? <Link query={{databaseSize: [size.slice(-2)]}} to='search'>
-                  {size}
-                </Link>
+              ? <Link query={{ databaseSize: [size.slice(-2)] }} to='search'>
+                {size}
+              </Link>
               : '?'}
           </dd>
 
           <dt>{getNameWithTooltip('Count of tables')}:</dt>
           <dd>
             {dataset.tableCount
-              ? <Link query={{tableCount: [getTableCountValue(dataset.tableCount)]}} to='search'>
-                  {getLocaleString(dataset.tableCount)}
-                </Link>
+              ? <Link query={{ tableCount: [getTableCountValue(dataset.tableCount)] }} to='search'>
+                {getLocaleString(dataset.tableCount)}
+              </Link>
               : '?'}
           </dd>
 
@@ -74,8 +70,8 @@ export default class DatasetInfoDetails extends Component {
           <dd>
             {dataset.missingValues !== null
               ? (dataset.missingValues
-                  ? <Link query={{missingValues: ['With missing values']}} to='search'>Yes</Link>
-                  : <Link query={{missingValues: ['Without missing values']}} to='search'>No</Link>)
+                ? <Link query={{ missingValues: ['With missing values'] }} to='search'>Yes</Link>
+                : <Link query={{ missingValues: ['Without missing values'] }} to='search'>No</Link>)
               : '?'}
           </dd>
 
@@ -83,12 +79,12 @@ export default class DatasetInfoDetails extends Component {
           <dd>
             {dataset.compositeKeys !== null
               ? (dataset.compositeKeys
-                  ? <Link query={{compoundKeys: ['With compound keys']}} to='search'>
-                      <abbr title={tooltips['With compound keys']}>Yes</abbr>
-                    </Link>
-                  : <Link query={{compoundKeys: ['Without compound keys']}} to='search'>
-                      <abbr title={tooltips['Without compound keys']}>No</abbr>
-                    </Link>)
+                ? <Link query={{ compoundKeys: ['With compound keys'] }} to='search'>
+                  <abbr title={tooltips['With compound keys']}>Yes</abbr>
+                </Link>
+                : <Link query={{ compoundKeys: ['Without compound keys'] }} to='search'>
+                  <abbr title={tooltips['Without compound keys']}>No</abbr>
+                </Link>)
               : '?'}
           </dd>
 
@@ -96,12 +92,12 @@ export default class DatasetInfoDetails extends Component {
           <dd>
             {dataset.loops !== null
               ? (dataset.loops
-                  ? <Link query={{loops: ['With loops']}} to='search'>
-                      <abbr title={tooltips['With loops']}>Yes</abbr>
-                    </Link>
-                  : <Link query={{loops: ['Without loops']}} to='search'>
-                      <abbr title={tooltips['Without loops']}>No</abbr>
-                    </Link>)
+                ? <Link query={{ loops: ['With loops'] }} to='search'>
+                  <abbr title={tooltips['With loops']}>Yes</abbr>
+                </Link>
+                : <Link query={{ loops: ['Without loops'] }} to='search'>
+                  <abbr title={tooltips['Without loops']}>No</abbr>
+                </Link>)
               : '?'}
           </dd>
         </dl>
@@ -110,8 +106,8 @@ export default class DatasetInfoDetails extends Component {
           <dd>
             {dataset.isArtificial !== null
               ? (dataset.isArtificial
-                ? <Link query={{type: ['Synthetic']}} to='search'>{getNameWithTooltip('Synthetic')}</Link>
-                : <Link query={{type: ['Real']}} to='search'>{getNameWithTooltip('Real')}</Link>)
+                ? <Link query={{ type: ['Synthetic'] }} to='search'>{getNameWithTooltip('Synthetic')}</Link>
+                : <Link query={{ type: ['Real'] }} to='search'>{getNameWithTooltip('Real')}</Link>)
               : '?'}
           </dd>
 
@@ -139,7 +135,7 @@ export default class DatasetInfoDetails extends Component {
       .map((dataType) => {
         return (
           <li key={dataType}>
-            <Link query={{dataType: [getDataTypeText(dataType)]}} to='search'>
+            <Link query={{ dataType: [getDataTypeText(dataType)] }} to='search'>
               {getTagName(dataType)}
             </Link>
           </li>
@@ -148,3 +144,7 @@ export default class DatasetInfoDetails extends Component {
   }
 
 }
+
+DatasetInfoDetails.propTypes = {
+  dataset: React.PropTypes.instanceOf(DatasetType).isRequired
+};

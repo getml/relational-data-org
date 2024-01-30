@@ -1,16 +1,12 @@
 import React from 'react';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 import immutable from 'immutable';
 import Component from '../common/component.react';
-import {capitalize, getNameWithTooltip, getSizeWithUnit} from '../../lib/helpers';
+import { capitalize, getNameWithTooltip, getSizeWithUnit } from '../../lib/helpers';
 
 require('./statisticsSummary.styl');
 
 export default class StatisticsSummary extends Component {
-
-  static propTypes = {
-    summary: React.PropTypes.instanceOf(immutable.List).isRequired
-  }
 
   constructor() {
     super();
@@ -82,7 +78,7 @@ export default class StatisticsSummary extends Component {
             .map(s => {
               return (
                 <tr key={s.title}>
-                  <td><Link params={{title: s.title}} to='dataset'>{s.title}</Link></td>
+                  <td><Link params={{ title: s.title }} to='dataset'>{s.title}</Link></td>
                   <td>{s.tableCount}</td>
                   <td>{s.columnCount}</td>
                   <td>{s.rowCount}</td>
@@ -108,4 +104,8 @@ export default class StatisticsSummary extends Component {
       </table>
     );
   }
+}
+
+StatisticsSummary.propTypes = {
+  summary: React.PropTypes.instanceOf(immutable.List).isRequired
 }

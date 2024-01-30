@@ -1,4 +1,4 @@
-import {Map, Record} from 'immutable';
+import { Map, Record } from 'immutable';
 import FeatureFunction from './featureFunction';
 
 const ResultCurrentRecord = Record({
@@ -9,7 +9,7 @@ const ResultCurrentRecord = Record({
 
 export class ResultCurrent extends ResultCurrentRecord {
 
-  static revive = (props) => {
+  static revive(props) {
     if (props instanceof Map) {
       props = props.set('featureFunction', FeatureFunction.revive(props.get('featureFunction')));
     }

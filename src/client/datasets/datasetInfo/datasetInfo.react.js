@@ -12,10 +12,6 @@ require('./datasetInfo.styl');
 
 export default class DatasetInfo extends Component {
 
-  static propTypes = {
-    dataset: React.PropTypes.instanceOf(DatasetType).isRequired
-  }
-
   render() {
     const dataset = this.props.dataset;
     const mwb = dataset.mwbPath
@@ -51,15 +47,19 @@ export default class DatasetInfo extends Component {
           dataset={dataset}
         />
 
-        { mwb ? (
+        {mwb ? (
           <div>
             <h2>MySQL Workbench Database Structure</h2>
             <a href={mwb}>Download</a>
           </div>
-        ) : null }
+        ) : null}
       </div>
     );
 
   }
 
 }
+
+DatasetInfo.propTypes = {
+  dataset: React.PropTypes.instanceOf(DatasetType).isRequired
+};

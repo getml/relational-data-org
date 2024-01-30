@@ -1,4 +1,4 @@
-import {Record} from 'immutable';
+import { Record } from 'immutable';
 
 const ContributorRecord = Record({
   name: '',
@@ -8,7 +8,7 @@ const ContributorRecord = Record({
 
 export default class Contributor extends ContributorRecord {
 
-  static revive = (props) => {
+  static revive(props) {
     return new Contributor(props);
   }
 

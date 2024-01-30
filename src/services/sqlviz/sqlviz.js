@@ -5,15 +5,16 @@ import config from '../../config/config.server';
 import nunjucks from 'nunjucks';
 import path from 'path';
 import fs from 'fs';
-import {exec} from 'child_process';
+import { exec } from 'child_process';
 
-export function getSchema(dbName: string) {
+export function getSchema(dbName) {
   // create a new connection to dbName. The connection is going to close itself after a few minutes of inactivity.
+  console.log("getting schema for " + dbName)
   let db = knex({
     client: config.database.client,
     connection: {
-      host:     config.database.host,
-      user:     config.database.user,
+      host: config.database.host,
+      user: config.database.user,
       password: config.database.password,
       database: dbName
     },
@@ -38,11 +39,12 @@ export function getSchema(dbName: string) {
     .whereRaw('columns.table_schema = database() and columns.table_schema = tables.table_schema and columns.table_name = tables.table_name and tables.table_type =  "BASE TABLE"')
     .orderByRaw('columns.table_name, columns.ordinal_position')
     .map((el) => {
-      const name = el.table_name;
+      console.log("got el", el)
+      const name = el.TABLE_NAME;
       tables[name] = tables[name] || {};
-      tables[name][el.column_name] = {
-        name: el.column_name,
-        type: el.data_type,
+      tables[name][el.COLUMN_NAME] = {
+        name: el.COLUMN_NAME,
+        type: el.DATA_TYPE,
         fk: null
       };
       return tables;
@@ -62,6 +64,7 @@ export function getSchema(dbName: string) {
         });
     })
     .then((res) => {
+      console.log("that's in tables now", tables)
       Object.keys(tables).forEach((name) => {
         let model = {
           id: name2id(name),
@@ -84,20 +87,29 @@ export function getSchema(dbName: string) {
               arrows: ''
             });
         });
-
         graph.models.push(model);
       });
 
-      nunjucks.configure(path.join(__dirname, 'tpl'), {autoescape: true});
+      nunjucks.configure(path.join(__dirname, 'tpl'), { autoescape: true });
       const dotStr = nunjucks.render('sqlviz.tpl', graph);
 
       exec('which dot', (err, stdout, stderr) => {
         if (!err && !stderr) {
           const tmpDotFile = path.join(__dirname, 'tpl', dbName + '.dot');  // hope dbName doesn't contain any ridiculous character
+          console.log("got tmpDotFile", tmpDotFile)
           const outFilename = path.join(__dirname, '..', '..', '..', 'assets', 'img', 'datasets-generated', dbName + '.svg');
+          const outDir = path.dirname(outFilename);
+          if (!fs.existsSync(outDir)) {
+            fs.mkdirSync(outDir, { recursive: true });
+          }
           const dot = stdout.trim();
           const cmd = dot + ' -Tsvg -o ' + outFilename + ' ' + tmpDotFile;
-          fs.writeFileSync(tmpDotFile, dotStr);
+          try {
+            fs.writeFileSync(tmpDotFile, dotStr);
+          }
+          catch (err) {
+            console.log("error writing file", err)
+          }
           exec(cmd);
         } else {
           console.error(stderr + ' ' + err); // eslint-disable-line no-console
@@ -107,7 +119,7 @@ export function getSchema(dbName: string) {
     });
 
   // subroutine: remove all whitespaces and slashes for graphviz and hope the result will be unique
-  function name2id(name: string) {
+  function name2id(name) {
     return name.replace(/\s/g, '').replace(/-/g, '');
   }
 }

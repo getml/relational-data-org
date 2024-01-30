@@ -6,10 +6,6 @@ require('./featureFunctionSummary.styl');
 
 export default class FeatureFunctionSummary extends Component {
 
-  static propTypes = {
-    summary: React.PropTypes.instanceOf(immutable.List).isRequired
-  }
-
   constructor() {
     super();
     this.state = {
@@ -98,3 +94,7 @@ export default class FeatureFunctionSummary extends Component {
     );
   }
 }
+
+FeatureFunctionSummary.propTypes = {
+  summary: React.PropTypes.instanceOf(immutable.List).isRequired
+};

@@ -3,10 +3,6 @@ import shallowEqual from 'react-pure-render/shallowEqual';
 
 export default class Component extends React.Component {
 
-  static contextTypes = {
-    router: React.PropTypes.func
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     if (this.context.router) {
       const changed = this.pureComponentLastPath !== this.context.router.getCurrentPath();
@@ -17,7 +13,11 @@ export default class Component extends React.Component {
     }
 
     return !shallowEqual(this.props, nextProps) ||
-           !shallowEqual(this.state, nextState);
+      !shallowEqual(this.state, nextState);
   }
 
+}
+
+Component.contextTypes = {
+  router: React.PropTypes.func
 }

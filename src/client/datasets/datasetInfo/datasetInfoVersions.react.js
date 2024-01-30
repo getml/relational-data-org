@@ -1,15 +1,11 @@
 import React from 'react';
 import immutable from 'immutable';
 import Component from '../../common/component.react.js';
-import {capitalize} from '../../../lib/helpers';
+import { capitalize } from '../../../lib/helpers';
 
 require('./datasetInfoVersions.styl');
 
 export default class DatasetInfoVersions extends Component {
-
-  static propTypes = {
-    versions: React.PropTypes.instanceOf(immutable.List).isRequired
-  }
 
   render() {
     const versions = this.props.versions;
@@ -51,3 +47,7 @@ export default class DatasetInfoVersions extends Component {
   }
 
 }
+
+DatasetInfoVersions.propTypes = {
+  versions: React.PropTypes.instanceOf(immutable.List).isRequired
+};

@@ -8,9 +8,6 @@ require('./datasetInfoSummary.styl');
 
 export default class DatasetInfoSummary extends Component {
 
-  static propTypes = {
-    dataset: React.PropTypes.instanceOf(DatasetType).isRequired
-  }
 
   render() {
     const dataset = this.props.dataset;
@@ -42,4 +39,8 @@ export default class DatasetInfoSummary extends Component {
     );
   }
 
+}
+
+DatasetInfoSummary.propTypes = {
+  dataset: React.PropTypes.instanceOf(DatasetType).isRequired
 }

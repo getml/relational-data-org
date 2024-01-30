@@ -1,5 +1,5 @@
 import React from 'react';
-import {RouteHandler} from 'react-router';
+import { RouteHandler } from 'react-router';
 import Component from '../common/component.react';
 import exposeRouter from '../common/exposerouter.react';
 import Header from '../common/header.react';
@@ -14,16 +14,11 @@ import '../statistics/store';
 
 require('./app.styl');
 
-@exposeRouter
-export default class App extends Component {
+class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = this.getState();
-  }
-
-  static propTypes = {
-    router: React.PropTypes.func
   }
 
   getState() {
@@ -55,3 +50,9 @@ export default class App extends Component {
   }
 
 }
+
+App.propTypes = {
+  router: React.PropTypes.func
+};
+
+export default exposeRouter(App);

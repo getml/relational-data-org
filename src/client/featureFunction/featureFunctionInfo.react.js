@@ -6,10 +6,6 @@ require('./featureFunctionInfo.styl');
 
 export default class FeatureFunctionInfo extends Component {
 
-  static propTypes = {
-    featureFunction: React.PropTypes.instanceOf(FeatureFunctionType).isRequired
-  }
-
   render() {
     const featureFunction = this.props.featureFunction;
 
@@ -50,4 +46,8 @@ export default class FeatureFunctionInfo extends Component {
       </div>
     );
   }
+}
+
+FeatureFunctionInfo.propTypes = {
+  featureFunction: React.PropTypes.instanceOf(FeatureFunctionType).isRequired
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Component from '../common/component.react';
-import {focusInvalidField} from '../lib/validation';
-import {submitFeatureFunctionForm} from './actions';
+import { focusInvalidField } from '../lib/validation';
+import { submitFeatureFunctionForm } from './actions';
 import exposeRouter from '../common/exposerouter.react';
 import LaddaButton from 'react-ladda';
 import Message from '../app/message';
@@ -9,16 +9,11 @@ import Message from '../app/message';
 require('ladda/dist/ladda.min.css');
 require('./featureFunctionForm.styl');
 
-@exposeRouter
-export default class FeatureFunctionForm extends Component {
-
-  static propTypes = {
-    message: React.PropTypes.instanceOf(Message).isRequired,
-    router: React.PropTypes.func.isRequired
-  }
+class FeatureFunctionForm extends Component {
 
   constructor() {
     super();
+    this.onSubmit = this.onSubmit.bind(this);
     this.state = { loading: false };
   }
 
@@ -50,7 +45,7 @@ export default class FeatureFunctionForm extends Component {
     this.refs.featureDescription.getDOMNode().value = '';
     this.refs.featureApplication.getDOMNode().value = '';
     this.refs.sql.getDOMNode().value = '';
-    this.props.router.transitionTo('featureFunctionDetail', {id: data});
+    this.props.router.transitionTo('featureFunctionDetail', { id: data });
   }
 
   renderMessage(message) {
@@ -66,7 +61,7 @@ export default class FeatureFunctionForm extends Component {
   render() {
     return (
       <div className='FeatureFunctionForm'>
-        <form action='' method='post' onSubmit={::this.onSubmit}>
+        <form action='' method='post' onSubmit={this.onSubmit}>
           {this.props.message.text
             ? this.renderMessage(this.props.message)
             : null
@@ -126,7 +121,15 @@ export default class FeatureFunctionForm extends Component {
             loading={this.state.loading}
           >Submit</LaddaButton>
         </form>
-      </div>
+      </div >
     );
   }
 }
+
+FeatureFunctionForm.propTypes = {
+  message: React.PropTypes.instanceOf(Message).isRequired,
+  router: React.PropTypes.func.isRequired
+}
+
+
+export default exposeRouter(FeatureFunctionForm);

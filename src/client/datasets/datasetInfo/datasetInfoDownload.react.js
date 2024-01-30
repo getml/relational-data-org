@@ -4,10 +4,6 @@ import DatasetType from '../dataset';
 
 export default class DatasetInfoDownload extends Component {
 
-  static propTypes = {
-    dataset: React.PropTypes.instanceOf(DatasetType).isRequired
-  }
-
   render() {
     return (
       <div className='DatasetInfoDownload'>
@@ -17,12 +13,12 @@ export default class DatasetInfoDownload extends Component {
         </p>
         <ol>
           <li>
-            Open your favourite MariaDB client (<a href='http://www.mysql.com/products/workbench/'>MySQL Workbench</a> works, but see <a href="https://relational.fit.cvut.cz/about">FAQ</a>)
+            Open your favourite MariaDB client (<a href='http://www.mysql.com/products/workbench/'>MySQL Workbench</a> works, but see <a href="https://relational-data.org/about">FAQ</a>)
           </li>
           <li>
             Use following credentials:
             <ul>
-              <li>hostname: relational.fit.cvut.cz</li>
+              <li>hostname: db.relational-data.org</li>
               <li>port: 3306</li>
               <li>username: guest</li>
               <li>password: relational</li>
@@ -37,3 +33,7 @@ export default class DatasetInfoDownload extends Component {
   }
 
 }
+
+DatasetInfoDownload.propTypes = {
+  dataset: React.PropTypes.instanceOf(DatasetType).isRequired
+};

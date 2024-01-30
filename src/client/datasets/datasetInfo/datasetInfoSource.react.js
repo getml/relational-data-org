@@ -3,11 +3,6 @@ import Component from '../../common/component.react.js';
 
 export default class DatasetInfoSource extends Component {
 
-  static propTypes = {
-    bibtex: React.PropTypes.string,
-    origin: React.PropTypes.string
-  }
-
   render() {
     const origin = this.props.origin;
     const originText = (origin && origin.split('/').length >= 2 ? origin.split('/')[2] : origin);
@@ -27,3 +22,8 @@ export default class DatasetInfoSource extends Component {
   }
 
 }
+
+DatasetInfoSource.propTypes = {
+  bibtex: React.PropTypes.string,
+  origin: React.PropTypes.string
+};

@@ -4,15 +4,10 @@ import DocumentTitle from 'react-document-title';
 import Component from '../common/component.react';
 import DatasetInfo from '../datasets/datasetInfo/datasetInfo.react.js';
 import exposeRouter from '../common/exposerouter.react';
-import {fetchDataset} from '../datasets/actions';
+import { fetchDataset } from '../datasets/actions';
 
-@exposeRouter
-export default class DatasetPage extends Component {
+class DatasetPage extends Component {
 
-  static propTypes = {
-    datasets: React.PropTypes.instanceOf(immutable.Map).isRequired,
-    router: React.PropTypes.func.isRequired
-  }
 
   componentWillMount() {
     const datasetTitle = this.props.router.getCurrentParams().title;
@@ -49,3 +44,9 @@ export default class DatasetPage extends Component {
   }
 }
 
+DatasetPage.propTypes = {
+  datasets: React.PropTypes.instanceOf(immutable.Map).isRequired,
+  router: React.PropTypes.func.isRequired
+};
+
+export default exposeRouter(DatasetPage);

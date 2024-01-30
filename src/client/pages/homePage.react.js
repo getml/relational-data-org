@@ -3,15 +3,11 @@ import immutable from 'immutable';
 import DocumentTitle from 'react-document-title';
 import Component from '../common/component.react';
 import Dataset from '../datasets/dataset.react';
-import {fetchTopDatasets} from '../datasets/actions';
+import { fetchTopDatasets } from '../datasets/actions';
 
 require('./homePage.styl');
 
 export default class HomePage extends Component {
-
-  static propTypes = {
-    datasets: React.PropTypes.instanceOf(immutable.Map).isRequired
-  }
 
   componentWillMount() {
     const result = this.props.datasets.get('top');
@@ -31,9 +27,9 @@ export default class HomePage extends Component {
           {topDatasets.fetched
             ? (
               <ul className='TopDatasets'>
-              {topDatasets.list.map((dataset, i) => {
-                return <Dataset dataset={dataset} key={dataset.title} />;
-              })}
+                {topDatasets.list.map((dataset, i) => {
+                  return <Dataset dataset={dataset} key={dataset.title} />;
+                })}
               </ul>
             ) : null
           }

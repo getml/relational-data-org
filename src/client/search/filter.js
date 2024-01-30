@@ -1,4 +1,4 @@
-import {List, Record} from 'immutable';
+import { List, Record } from 'immutable';
 
 const FilterRecord = Record({
   shrinked: List()
@@ -6,7 +6,7 @@ const FilterRecord = Record({
 
 export default class Filter extends FilterRecord {
 
-  static revive = (props) => {
+  static revive(props) {
     return new Filter(props);
   }
 

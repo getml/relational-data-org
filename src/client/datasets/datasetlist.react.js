@@ -7,10 +7,6 @@ require('./datasetlist.styl');
 
 export default class DatasetList extends Component {
 
-  static propTypes = {
-    datasets: React.PropTypes.instanceOf(immutable.List)
-  }
-
   render() {
     return (
       <ul className='DatasetList'>
@@ -22,3 +18,7 @@ export default class DatasetList extends Component {
   }
 
 }
+
+DatasetList.propTypes = {
+  datasets: React.PropTypes.instanceOf(immutable.List).isRequired
+};

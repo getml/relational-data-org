@@ -1,21 +1,20 @@
 import React from 'react';
-import {List} from 'immutable';
+import { List } from 'immutable';
 import Component from '../common/component.react';
-import {toggleFilterGroup} from './actions';
-import {getTagName} from '../../lib/helpers';
+import { toggleFilterGroup } from './actions';
+import { getTagName } from '../../lib/helpers';
+import Filter from './filter';
 
 require('./filtergroup.styl');
 
 export default class FilterGroup extends Component {
 
-  static propTypes = {
-    checked: React.PropTypes.instanceOf(List),
-    displayName: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    shrinked: React.PropTypes.bool.isRequired,
-    values: React.PropTypes.array.isRequired
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
   }
+
 
   onKeyPress(e) {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -38,11 +37,11 @@ export default class FilterGroup extends Component {
       <div className={className}>
         <h4
           className='FilterGroup-heading'
-          onClick={::this.onClick}
-          onKeyUp={::this.onKeyPress}
+          onClick={this.onClick}
+          onKeyUp={this.onKeyPress}
           role='button'
           tabIndex='0'
-          >{this.props.displayName}
+        >{this.props.displayName}
         </h4>
 
         <div className='FilterGroup-body'>
@@ -67,3 +66,12 @@ export default class FilterGroup extends Component {
   }
 
 }
+
+FilterGroup.propTypes = {
+  checked: React.PropTypes.instanceOf(List),
+  displayName: React.PropTypes.string.isRequired,
+  name: React.PropTypes.string.isRequired,
+  onChange: React.PropTypes.func.isRequired,
+  shrinked: React.PropTypes.bool.isRequired,
+  values: React.PropTypes.array.isRequired
+};

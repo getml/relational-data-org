@@ -1,5 +1,5 @@
-import {List, Record} from 'immutable';
-import {round} from '../../lib/helpers';
+import { List, Record } from 'immutable';
+import { round } from '../../lib/helpers';
 
 const ResultRecord = Record({
   tableName: '',
@@ -14,7 +14,7 @@ const ResultRecord = Record({
 });
 
 class Result extends ResultRecord {
-  static revive = (props) => {
+  static revive(props) {
     return new Result(props);
   }
 }
@@ -31,7 +31,7 @@ const SummaryRecord = Record({
 });
 
 class Summary extends SummaryRecord {
-  static revive = (props) => {
+  static revive(props) {
     return new Summary(props);
   }
 }
@@ -56,7 +56,7 @@ const FeatureFunctionRecord = Record({
 
 export default class FeatureFunction extends FeatureFunctionRecord {
 
-  static fromDB = (props) => {
+  static fromDB(props) {
     return new FeatureFunction({
       author: props.get('author'),
       col1DataType: props.get('col1_data_type'),
@@ -97,7 +97,7 @@ export default class FeatureFunction extends FeatureFunctionRecord {
     });
   }
 
-  static revive = (props) => {
+  static revive(props) {
     if (props instanceof Map) {
       props = props
         .set('results', props.get('results')

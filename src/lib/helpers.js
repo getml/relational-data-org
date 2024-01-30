@@ -1,6 +1,6 @@
 import React from 'react';
 import config from '../config/config.client';
-import {getDataTypeText} from '../client/datasets/tags/store';
+import { getDataTypeText } from '../client/datasets/tags/store';
 
 /**
  * Returns a capitalized string
@@ -55,6 +55,7 @@ export function getSizeWithUnit(size: number) {
  * @return string|null
  */
 export function getImagePath(image, schema) {
+  console.log('getImagePath', image, schema)
   if (!image && schema) {
     const imagePath = config.images.datasetsGeneratedPath + schema + '.svg';
     return checkImage(imagePath, schema) ? imagePath : null;
@@ -67,6 +68,7 @@ export function getImagePath(image, schema) {
  * @return boolean
  */
 export function checkImage(src: string, schema: string) {
+  console.log('checkImage', src, schema);
   if (process.env.IS_BROWSER) {
     var req = new XMLHttpRequest();
     req.open('HEAD', src, false);
@@ -80,8 +82,10 @@ export function checkImage(src: string, schema: string) {
     const fs = require('fs');
     const path = require('path');
     if (fs.existsSync(path.join(__dirname, '..', '..', src))) {
+      console.log('image exists');
       return true;
     } else {
+      console.log('image does not exist');
       const sqlViz = require('../services/sqlviz/sqlviz.js');
       sqlViz.getSchema(schema);
       return false;

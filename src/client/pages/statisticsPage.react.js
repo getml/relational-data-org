@@ -5,17 +5,12 @@ import Component from '../common/component.react';
 import ContributorsChart from '../contributors/contributorsChart.react';
 import ClassifiersChart from '../statistics/classifiersChart.react';
 import StatisticsSummary from '../statistics/statisticsSummary.react';
-import {fetchContributors} from '../contributors/actions';
-import {fetchClassifiers, fetchSummary} from '../statistics/actions';
+import { fetchContributors } from '../contributors/actions';
+import { fetchClassifiers, fetchSummary } from '../statistics/actions';
 
 require('./statisticsPage.styl');
 
 export default class StatisticsPage extends Component {
-
-  static propTypes = {
-    contributors: React.PropTypes.instanceOf(immutable.Map).isRequired,
-    statistics: React.PropTypes.instanceOf(immutable.Map).isRequired
-  }
 
   componentWillMount() {
     fetchSummary();
@@ -49,7 +44,7 @@ export default class StatisticsPage extends Component {
             <ClassifiersChart
               classifiers={classifiers}
               height={450}
-              title = ''
+              title=''
               width={892}
             />
           </section>
@@ -59,7 +54,7 @@ export default class StatisticsPage extends Component {
             <ContributorsChart
               data={contributors}
               height={contributors.count() * 75}
-              margins={{top: 0, right: 20, bottom: 20, left: (leftMargin + 2) * 8}}
+              margins={{ top: 0, right: 20, bottom: 20, left: (leftMargin + 2) * 8 }}
               title=''
               width={992}
             />
@@ -70,3 +65,8 @@ export default class StatisticsPage extends Component {
   }
 
 }
+
+StatisticsPage.propTypes = {
+  contributors: React.PropTypes.instanceOf(immutable.Map).isRequired,
+  statistics: React.PropTypes.instanceOf(immutable.Map).isRequired
+};

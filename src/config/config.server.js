@@ -6,24 +6,24 @@ var config = {
     url: '/api/v1'
   },
   database: {
-    client:   'mysql',
-    host:     'relational.fit.cvut.cz',
-    user:     'guest',
-    password: 'relational',
+    client: 'mysql',
+    host: 'db.relational-data.org',
+    user: 'root',
+    password: 'exd@dyc1xum_bcj8QZJ',
     database: 'meta',
     featureFunction: {
       data: {
-        user:     '',
+        user: '',
         password: '',
         database: 'ctu_feature_data',
       },
       results: {
-        user:     '',
+        user: '',
         password: '',
         database: 'ctu_feature_func'
       },
       temp: {
-        user:     '',
+        user: '',
         password: '',
         database: 'ctu_feature_temp'
       }
@@ -45,8 +45,12 @@ var config = {
     ignore: /(\/\.|~$|\.(css|less|sass|scss|styl))/,
     hook: true
   },
-  port: process.env.PORT || 8000,
-  webpackStylesExtensions: ['css', 'less', 'sass', 'scss', 'styl']
+  port: process.env.PORT || 80,
+  webpackStylesExtensions: ['css', 'less', 'sass', 'scss', 'styl'],
+  plugins: [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  ]
 };
 
 module.exports = _.extend(config, localConfig);

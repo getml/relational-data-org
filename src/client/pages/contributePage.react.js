@@ -6,9 +6,6 @@ import ContributeForm from '../contribute/contributeForm.react';
 
 export default class ContributePage extends Component {
 
-  static propTypes = {
-    app: React.PropTypes.instanceOf(immutable.Map).isRequired
-  }
 
   render() {
     return (
@@ -22,3 +19,7 @@ export default class ContributePage extends Component {
   }
 
 }
+
+ContributePage.propTypes = {
+  app: React.PropTypes.instanceOf(immutable.Map).isRequired
+};

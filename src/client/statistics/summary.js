@@ -1,4 +1,4 @@
-import {Record} from 'immutable';
+import { Record } from 'immutable';
 
 const SummaryRecord = Record({
   title: '',
@@ -17,7 +17,7 @@ const SummaryRecord = Record({
 
 export default class Summary extends SummaryRecord {
 
-  static fromDB = (props) => {
+  static fromDB(props) {
     return new Summary({
       title: props.get('dataset_name'),
       tableCount: props.get('table_count'),
@@ -34,7 +34,7 @@ export default class Summary extends SummaryRecord {
     });
   }
 
-  static revive = (props) => {
+  static revive(props) {
     return new Summary(props);
   }
 

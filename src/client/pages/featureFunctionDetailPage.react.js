@@ -3,18 +3,13 @@ import immutable from 'immutable';
 import DocumentTitle from 'react-document-title';
 import Component from '../common/component.react';
 import exposeRouter from '../common/exposerouter.react';
-import {fetchFeatureFunction} from '../featureFunction/actions';
+import { fetchFeatureFunction } from '../featureFunction/actions';
 import FeatureFunctionInfo from '../featureFunction/featureFunctionInfo.react';
 import FeatureFunctionSummary from '../featureFunction/featureFunctionSummary.react';
 import FeatureFunctionDetails from '../featureFunction/featureFunctionDetails.react';
 
-@exposeRouter
-export default class FeatureFunctionDetailPage extends Component {
+class FeatureFunctionDetailPage extends Component {
 
-  static propTypes = {
-    featureFunctions: React.PropTypes.instanceOf(immutable.Map).isRequired,
-    router: React.PropTypes.func.isRequired
-  }
 
   componentWillMount() {
     const featureId = this.props.router.getCurrentParams().id;
@@ -60,3 +55,10 @@ export default class FeatureFunctionDetailPage extends Component {
   }
 
 }
+
+FeatureFunctionDetailPage.propTypes = {
+  featureFunctions: React.PropTypes.instanceOf(immutable.Map).isRequired,
+  router: React.PropTypes.func.isRequired
+};
+
+export default exposeRouter(FeatureFunctionDetailPage);

@@ -1,4 +1,4 @@
-import {Record} from 'immutable';
+import { Record } from 'immutable';
 
 const ClassifierRecord = Record({
   algorithm: null,
@@ -10,7 +10,7 @@ const ClassifierRecord = Record({
 
 export default class Classifier extends ClassifierRecord {
 
-  static fromDB = (props) => {
+  static fromDB(props) {
     return new Classifier({
       algorithm: props.get('algorithm'),
       type: props.get('type'),
@@ -20,7 +20,7 @@ export default class Classifier extends ClassifierRecord {
     });
   }
 
-  static revive = (props) => {
+  static revive(props) {
     return new Classifier(props);
   }
 

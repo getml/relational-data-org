@@ -4,11 +4,6 @@ import config from '../../config/config.server';
 
 export default class Html extends Component {
 
-  static propTypes = {
-    appHtml: React.PropTypes.string.isRequired,
-    appState: React.PropTypes.object.isRequired,
-    title: React.PropTypes.string.isRequired
-  }
 
   render() {
     const version = require('../../../package').version;
@@ -51,10 +46,15 @@ export default class Html extends Component {
           <title>{this.props.title}</title>
           {linkStyles}
         </head>
-        <body dangerouslySetInnerHTML={{__html: appHtml + scriptHtml}} />
+        <body dangerouslySetInnerHTML={{ __html: appHtml + scriptHtml }} />
       </html>
     );
   }
 
 }
 
+Html.propTypes = {
+  appHtml: React.PropTypes.string.isRequired,
+  appState: React.PropTypes.object.isRequired,
+  title: React.PropTypes.string.isRequired
+};  

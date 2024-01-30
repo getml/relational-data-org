@@ -6,17 +6,12 @@ import Component from '../common/component.react';
 import DatasetList from '../datasets/datasetlist.react';
 import Sidebar from '../common/sidebar.react';
 import exposeRouter from '../common/exposerouter.react';
-import {fetchSearchResults} from '../search/actions';
+import { fetchSearchResults } from '../search/actions';
 
 require('./searchPage.styl');
 
-@exposeRouter
-export default class SearchPage extends Component {
+class SearchPage extends Component {
 
-  static propTypes = {
-    router: React.PropTypes.func.isRequired,
-    search: React.PropTypes.instanceOf(immutable.Map).isRequired
-  }
 
   componentWillMount() {
     const query = FormType.fromJS(this.props.router.getCurrentQuery());
@@ -63,3 +58,10 @@ export default class SearchPage extends Component {
   }
 
 }
+
+SearchPage.propTypes = {
+  router: React.PropTypes.func.isRequired,
+  search: React.PropTypes.instanceOf(immutable.Map).isRequired
+};
+
+export default exposeRouter(SearchPage);
