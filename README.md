@@ -44,6 +44,62 @@ For dataset schema image generation, install [graphviz](http://www.graphviz.org/
 - Execute /assets/sql/meta_information.sql script to update meta.information.
 - Validate the change on the webpage.
 
+## Docker Deployment
+
+This section outlines the steps for manually deploying the `relational-data-page` application using Docker. The process includes building the Docker container, testing it locally, tagging the image, pushing it to Google Artifact Registry, and then deploying it to Google Cloud Run.
+
+### Build the Docker Container
+
+First, build the Docker container for the `relational-data-page` application:
+
+```bash
+docker build -t relational-data-page .
+```
+
+This command builds the Docker image using the Dockerfile in the current directory and tags it as `relational-data-page`.
+
+### Test the Container Locally
+
+Before pushing the image to the Artifact Registry, test it locally to ensure everything is working correctly:
+
+```bash
+docker run -p 4000:80 relational-data-page
+```
+
+This command runs the Docker container and maps port 4000 on your local machine to port 80 in the Docker container. You can test the application by navigating to `localhost:4000` in your web browser.
+
+### Tag the Local Docker Image
+
+Tag the Docker image with the appropriate tag and the Artifact Registry path:
+
+```bash
+docker tag relational-data-page europe-west1-docker.pkg.dev/relational-data-org/relational-data-page/relational-data-page:[tagId]
+```
+
+Replace `[tagId]` with your specific tag identifier. This tag associates the local image with a version in the Artifact Registry.
+
+### Push the Image to Artifact Registry
+
+Upload the tagged image to the Google Artifact Registry:
+
+```bash
+docker push europe-west1-docker.pkg.dev/relational-data-org/relational-data-page/relational-data-page:[tagId]
+```
+
+Ensure you replace `[tagId]` with the same tag used in the previous step.
+
+### Deploy the Image to Cloud Run
+
+After pushing the image to the Artifact Registry, deploy it to Google Cloud Run:
+
+- Navigate to the [Google Cloud Run Console](https://console.cloud.google.com/run/detail/europe-west1/relational-data-page/metrics?hl=en&project=relational-data-org).
+- Select the `relational-data-page` service.
+- Follow the instructions to deploy the new image.
+
+### Access Control
+
+If you do not have access to the GCP project and need to perform a deployment, please contact Alex at `alex@getml.com` for necessary permissions or assistance.
+
 ## Useful links for developers
 - [React.js](http://facebook.github.io/react/).
 - [What is the Flux application architecture](https://medium.com/brigade-engineering/what-is-the-flux-application-architecture-b57ebca85b9e).
