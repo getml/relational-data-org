@@ -44,7 +44,41 @@ For dataset schema image generation, install [graphviz](http://www.graphviz.org/
 - Execute /assets/sql/meta_information.sql script to update meta.information.
 - Validate the change on the webpage.
 
-## Docker Deployment
+
+## Continuous Deployment
+
+The `relational-data-page` application is configured with a continuous deployment pipeline. This means that any changes pushed to the `main` branch in the source repository are automatically built and deployed. Below are the details on how this process works and what you need to do to trigger a deployment.
+
+### Triggering Continuous Deployment
+
+1. **Commit Your Changes**: Make the necessary changes to your application code.
+
+2. **Push to the Main Branch**:
+   - Commit your changes to your local `main` branch.
+   - Push the commits to the remote repository:
+     ```bash
+     git push origin main
+     ```
+
+### What Happens Next
+
+- **Automated Build**: Once the changes are pushed to the `main` branch, the continuous deployment pipeline is triggered. Google Cloud Build automatically starts building the Docker image based on the `cloudbuild.yaml` file in the repository.
+- **Automated Testing (if configured)**: If you have set up automated tests, they will be executed during this build process. The deployment will proceed only if the tests pass.
+- **Automated Deployment**: After a successful build, the new image is automatically deployed to Google Cloud Run. The `relational-data-page` service is updated with the new version of the application.
+
+### Monitoring Deployment
+
+- You can monitor the progress of the build and deployment in the Google Cloud Console, under Cloud Build and Cloud Run sections, respectively.
+- In case of any issues during the build or deployment process, you can troubleshoot by checking the build logs in the Google Cloud Console.
+
+### Important Notes
+
+- Make sure only stable, review-passed code is pushed to the `main` branch, as this will trigger an automatic deployment to the production environment.
+- Consider using a separate development branch for ongoing work, and merge to `main` only when ready for deployment.
+
+
+
+## Manual Docker Deployment
 
 This section outlines the steps for manually deploying the `relational-data-page` application using Docker. The process includes building the Docker container, testing it locally, tagging the image, pushing it to Google Artifact Registry, and then deploying it to Google Cloud Run.
 
