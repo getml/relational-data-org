@@ -1,15 +1,16 @@
 import React from 'react';
 import Component from '../common/component.react';
-import {focusInvalidField} from '../lib/validation';
-import {submitContributeForm} from './actions';
+import { focusInvalidField } from '../lib/validation';
+import { submitContributeForm } from './actions';
 import Message from '../app/message';
 
 require('./contributeForm.styl');
 
 export default class ContributeForm extends Component {
 
-  static propTypes = {
-    message: React.PropTypes.instanceOf(Message).isRequired
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit(e) {
@@ -50,7 +51,7 @@ export default class ContributeForm extends Component {
     return (
       <div className='ContributeForm'>
         <h3>If you have a relational dataset, please, consider sharing it: </h3>
-        <form action='' method='post' onSubmit={::this.onSubmit}>
+        <form action='' method='post' onSubmit={this.onSubmit}>
           {this.props.message.text
             ? this.renderMessage(this.props.message)
             : null
@@ -70,7 +71,7 @@ export default class ContributeForm extends Component {
             className='ContributeForm-input'
             id='ContributeForm-origin'
             name='origin'
-            placeholder='http://relational.fit.cvut.cz'
+            placeholder='http://relational-data.org'
             ref='origin'
             type='text'
           />
@@ -119,3 +120,7 @@ export default class ContributeForm extends Component {
   }
 
 }
+
+ContributeForm.propTypes = {
+  message: React.PropTypes.instanceOf(Message)
+};

@@ -32,12 +32,6 @@ export default class AboutPage extends Component {
                 Because CSV files do not store information about data types, PKs, FKs and other constraints.
               </dd>
 
-              <dt>Why MariaDB database?</dt>
-              <dd>
-                Because in combination with <a href="http://clowdflows.org">ClowdFlows</a> you can process the datasets online. <br />
-                Just open one of the public workflows (like <a href="http://clowdflows.org/workflows/copy-workflow/2222">Wordification</a> or <a href="http://clowdflows.com/workflow/4018">Cross-validation</a>), change the credentials in "MySQL Connect" operator to the credentials from the repository and you are ready to go!
-              </dd>
-
               <dt>Why am I not able to connect to the database?</dt>
               <dd>
                 If you are connecting to the database over a corporate network, the corporate firewalls could be the culprit (it may block port 3306). <br />
@@ -46,12 +40,7 @@ export default class AboutPage extends Component {
                 If the problems persist, contact us and provide us with the following information: <ol>
                   <li>Your database client and its version (e.g. MySQL Workbench 6.3.10).</li>
                   <li>The database name you tried to connect to (e.g. mutagenesis).</li>
-                  </ol>
-              </dd>
-
-              <dt>Why MySQL Workbench complaints about incompatible/nonstandard server version?</dt>
-              <dd>
-                We are using open source version of MySQL called MariaDB, hence the warning. For all purposes that the public account permits it is safe to ignore the message.
+                </ol>
               </dd>
 
               <dt>Why mysqldump cannot find COLUMN_STATISTICS in information_schema?</dt>
@@ -63,13 +52,13 @@ export default class AboutPage extends Component {
               <dd>
                 See a collection of datasets at <a href="http://www-ai.ijs.si/~ilpnet2/apps/index.html">ILPnet2</a>. <br />
                 Or use a conversion <a href="http://www2.cs.sfu.ca/~oschulte/jbn/DataConversion/MLN.html">tool</a>, where you have to change the connection parameters in <code>src/Read.java</code> from:  <br />
-                  <code>
+                <code>
                   &emsp; read.setConnection("jdbc:mysql://mantong01.dyndns.org:3306/mln","temp","Passw0rd");
-                  </code> <br />
+                </code> <br />
                 to:  <br />
-                  <code>
-                  &emsp; read.setConnection("jdbc:mysql://relational.fit.cvut.cz:3306/mutagenesis","guest","relational");
-                  </code> <br />
+                <code>
+                  &emsp; read.setConnection("jdbc:mysql://db.relational-data.org:3306/mutagenesis","guest","relational");
+                </code> <br />
               </dd>
 
               <dt>Why do the datasets contain missing values/composite keys/strange data types/any other ugly thing you may think of?</dt>
