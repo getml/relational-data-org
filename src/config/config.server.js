@@ -37,7 +37,7 @@ var config = {
         pass: "StrongHrad99"
       }
     },
-    recipient: 'Jan Motl <jan.motl@fit.cvut.cz>, Oliver Schulte <oschulte@cs.sfu.ca>, Niklas Martin <niklas@getml.com>'
+    recipient: 'Jan Motl <jan.motl@fit.cvut.cz>, Oliver Schulte <oschulte@cs.sfu.ca>, Niklas Martin <niklas@getml.com>, Alexander Uhlig <alex@getml.com>'
   },
   googleAnalyticsId: 'UA-61229872-1',
   isProduction: process.env.NODE_ENV === 'production',
