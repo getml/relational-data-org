@@ -50,9 +50,9 @@ gulp.task('eslint', () => {
     'src/**/*.js',
     'webpack/*.js'
   ])
-  .pipe(eslint())
-  .pipe(eslint.format())
-  .pipe(eslint.failOnError());
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError());
 });
 
 gulp.task('server', ['env', 'build'], bg('node', 'src/server'));
