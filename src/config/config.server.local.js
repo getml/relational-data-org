@@ -2,8 +2,8 @@ module.exports = {
   database: {
     client: 'mysql',
     host: 'db.relational-data.org',
-    user: 'root',
-    password: 'exd@dyc1xum_bcj8QZJ',
+    user: 'guest',
+    password: 'relational',
     database: 'meta',
     featureFunction: {
       data: {
