@@ -32,13 +32,18 @@ export default class HomePage extends Component {
               <br></br>
               It is actively maintained and supported by the core team, with
               additional assistance from the team behind{" "}
-              <a href="https://getml.com">getML</a> since 2024.
+              <a href="https://getml.com" target="_blank">
+                getML
+              </a>{" "}
+              since 2024.
               <br></br>
               <br></br>
               For documentation, connection information, and citation info,
               please go to{" "}
-              <a href="https://arxiv.org/abs/1511.03086">this paper</a> on
-              arxiv.org.
+              <a href="https://arxiv.org/abs/1511.03086" target="_blank">
+                this paper
+              </a>{" "}
+              on arxiv.org.
             </p>
             <br></br>
             <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
@@ -58,16 +63,6 @@ export default class HomePage extends Component {
                 style={{ height: "36px", marginTop: "8px" }}
               />
             </div>
-          </section>
-          <section className="content">
-            <h2>Top datasets</h2>
-            {topDatasets.fetched ? (
-              <ul className="TopDatasets">
-                {topDatasets.list.map((dataset, i) => {
-                  return <Dataset dataset={dataset} key={dataset.title} />
-                })}
-              </ul>
-            ) : null}
           </section>
           <section className="content">
             <h2>Top datasets</h2>
