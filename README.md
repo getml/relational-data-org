@@ -8,15 +8,18 @@
 
 Install [iojs](https://iojs.org/) or [node.js](http://nodejs.org) (version 6.10.3 works, version 12 does not work anymore).
 Then install [gulp.js](http://gulpjs.com/) (the code relies on version 3.9.0).
+
 ```shell
   npm install -g gulp@3.9.0
 ```
 
 Some npm modules are required.
+
 ```shell
   npm install async
   npm install ladda
 ```
+
 For dataset schema image generation, install [graphviz](http://www.graphviz.org/).
 
 ## Install
@@ -33,17 +36,17 @@ For dataset schema image generation, install [graphviz](http://www.graphviz.org/
 - `gulp -p` run app in production mode
 - `gulp build -p` build in production mode
 
-
 ## Quality control
+
 - Use [Broken Link Checker](http://www.brokenlinkcheck.com/) to validate that a user cannot accidentally kill the web.
 
 ## Upload datasets
+
 - Create a new database on the server.
 - Upload the data into the database. Make sure the tables are stored with InnoDB engine (not MyISAM, which doesn't support foreign key constrains). And if possible, prefer UTF-8 character set before latin1_swedish (the default value in old versions of MySQL).
 - Add description of the data into meta.database and possibly into meta.dataset.
 - Execute /assets/sql/meta_information.sql script to update meta.information.
 - Validate the change on the webpage.
-
 
 ## Continuous Deployment
 
@@ -54,11 +57,16 @@ The `relational-data-page` application is configured with a continuous deploymen
 1. **Commit Your Changes**: Make the necessary changes to your application code.
 
 2. **Push to the Main Branch**:
+
    - Commit your changes to your local `main` branch.
    - Push the commits to the remote repository:
      ```bash
      git push origin main
      ```
+
+3. **Deploy the latest revisions**
+   - Follow [this scribe](https://scribehow.com/shared/Deploy_a_revision_from_Google_Cloud_Container_Registry__LOfor-PzTlGeLIAvLDrLTQ?referrer=workspace) to deploy the latest revision
+   - Tl;dr: Click on "Edit & Deploy New Revision" and select the latest revision.
 
 ### What Happens Next
 
@@ -75,8 +83,6 @@ The `relational-data-page` application is configured with a continuous deploymen
 
 - Make sure only stable, review-passed code is pushed to the `main` branch, as this will trigger an automatic deployment to the production environment.
 - Consider using a separate development branch for ongoing work, and merge to `main` only when ready for deployment.
-
-
 
 ## Manual Docker Deployment
 
@@ -135,6 +141,7 @@ After pushing the image to the Artifact Registry, deploy it to Google Cloud Run:
 If you do not have access to the GCP project and need to perform a deployment, please contact Alex at `alex@getml.com` for necessary permissions or assistance.
 
 ## Useful links for developers
+
 - [React.js](http://facebook.github.io/react/).
 - [What is the Flux application architecture](https://medium.com/brigade-engineering/what-is-the-flux-application-architecture-b57ebca85b9e).
 - [Learn ES6](https://babeljs.io/docs/learn-es6/).
